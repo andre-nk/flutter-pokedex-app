@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:pokedex/models/pokemon.dart';
 import 'package:pokedex/utils/string_extension.dart';
 import 'package:pokedex/widget/pokemon_stats.dart';
@@ -30,7 +29,7 @@ class _PokemonPageState extends State<PokemonPage> {
                 padding: EdgeInsets.symmetric(horizontal: 10.0),
                 child: Align(
                   child: Text(
-                    '#' + widget.pokemon.id.toString() + ' ' + widget.pokemon.name.capitalize(),
+                    '#' + widget.pokemon.id.toString(),
                     style: TextStyle(
                       fontSize: 18.0
                     ),
@@ -53,14 +52,52 @@ class _PokemonPageState extends State<PokemonPage> {
             ),
             shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(80),
-                bottomRight: Radius.circular(80)
+                bottomLeft: Radius.circular(100),
+                bottomRight: Radius.circular(100)
               )
             ),
             expandedHeight: 200.0 + statusBarHeight,
             backgroundColor: widget.pokemon.rgb.length > 0
               ? Color.fromARGB(255, widget.pokemon.rgb[0], widget.pokemon.rgb[1], widget.pokemon.rgb[2])
               : Colors.white,
+          ),
+
+          SliverToBoxAdapter(
+            child: Container(
+              padding: EdgeInsets.only(
+                bottom: 5.0,
+                top: 15.0
+              ),
+              child: Center(
+                child: Text(
+                  widget.pokemon.name.capitalize(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 26,
+                    color: Colors.white
+                  ),
+                ),
+              ),
+            )
+          ),
+
+          SliverToBoxAdapter(
+            child: Container(
+               padding: EdgeInsets.symmetric(
+                horizontal: 40.0,
+                vertical: 5.0
+              ),
+              child: Center(
+                child: Text(
+                  '\"' + widget.pokemon.pokedexFlavorEntry + '\"',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white
+                  ),
+                ),
+              ),
+            )
           ),
 
           SliverToBoxAdapter(

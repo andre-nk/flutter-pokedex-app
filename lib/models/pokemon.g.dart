@@ -23,6 +23,7 @@ Pokemon _$PokemonFromJson(Map<String, dynamic> json) {
     rgb: json['rgb'] as List,
     artwork: json['artwork'] as String,
     moves: json['moves'] as List,
+    pokedexFlavorEntry: json['pokedex_flavor_entry'] as String,
   );
 }
 
@@ -37,4 +38,5 @@ Map<String, dynamic> _$PokemonToJson(Pokemon instance) => <String, dynamic>{
       'rgb': instance.rgb,
       'artwork': instance.artwork,
       'moves': instance.moves,
+      'pokedex_flavor_entry': instance.pokedexFlavorEntry,
     };

@@ -17,7 +17,8 @@ class Pokemon {
     this.types,
     this.rgb,
     this.artwork,
-    this.moves
+    this.moves,
+    this.pokedexFlavorEntry
   });
 
   final int id;
@@ -40,6 +41,9 @@ class Pokemon {
   final String artwork;
 
   final List moves;
+
+  @JsonKey(name: 'pokedex_flavor_entry')
+  final String pokedexFlavorEntry;
 
   static Map colorsTemplate = {
     'bug': Color.fromARGB(255, 198, 209, 110),

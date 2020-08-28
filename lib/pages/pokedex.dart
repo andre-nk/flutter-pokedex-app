@@ -44,7 +44,7 @@ class _PokedexPageState extends State<PokedexPage> {
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext __context, int index) {
                         return FutureBuilder(
-                          future: PokedexService.getPokemon(name: pokedex.pokemon[index].id.toString()),
+                          future: PokedexService.getPokemon(name: pokedex.pokemon[index].data.name),
                           builder: (BuildContext ___context, ___snapshot) {
                             if (___snapshot.hasData) {
                               return PokemonItemWidget(pokemon: ___snapshot.data);
