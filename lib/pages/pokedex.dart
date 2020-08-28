@@ -50,6 +50,19 @@ class _PokedexPageState extends State<PokedexPage> {
                               return PokemonItemWidget(pokemon: ___snapshot.data);
                             }
 
+                            if (___snapshot.hasError) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(vertical: 32.0),
+                                child: Center(
+                                  child: Icon(
+                                    Icons.error_outline,
+                                    color: Colors.grey[600],
+                                    size: 48.0,
+                                  )
+                                ),
+                              );
+                            }
+
                             return Padding(
                               padding: EdgeInsets.symmetric(vertical: 32.0),
                               child: Center(child: CircularProgressIndicator()),
@@ -57,10 +70,23 @@ class _PokedexPageState extends State<PokedexPage> {
                           },
                         );
                       },
-                      childCount: 9,
+                      childCount: pokedex.pokemon.length,
                     ),
                   )
                 ],
+              );
+            }
+
+            if (_snapshot.hasError) {
+              return Padding(
+                padding: EdgeInsets.symmetric(vertical: 32.0),
+                child: Center(
+                  child: Icon(
+                    Icons.error_outline,
+                    color: Colors.grey[600],
+                    size: 48.0,
+                  )
+                ),
               );
             }
 
