@@ -96,6 +96,17 @@ class _SideMenuState extends State<SideMenu> {
               );
             },
           ),
+
+          ListTile(
+            leading: Icon(Icons.games),
+            title: Text('Galar'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PokedexPage(pokedexId: 8)),
+              );
+            },
+          ),
         ],
       ),
     );

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Nunito',
       ),
-      home: PokedexPage(pokedexId: 2),
+      home: PokedexPage(pokedexId: 1),
     );
   }
 }
