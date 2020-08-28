@@ -8,10 +8,12 @@ import 'package:pokedex/models/pokedex.dart';
 import 'package:pokedex/models/pokemon.dart';
 
 class PokedexService {
-  static getPokedex({String name}) async {
+  static getPokedex(id) async {
     try {
-      final String url = 'https://pokeapi.co/api/v2/pokedex/$name/';
-      final response = await http.get(url);
+      final String url = 'https://us-central1-image-dominant-color.cloudfunctions.net/getPokedexByGenerationFromPokedexApi';
+      final response = await http.post(url, body: {
+        'regionId': id.toString()
+      });
 
       if (response.statusCode == 200) {
         final Pokedex pokedex = Pokedex.fromJson(json.decode(response.body));

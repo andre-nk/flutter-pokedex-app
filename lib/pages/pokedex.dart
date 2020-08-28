@@ -31,7 +31,7 @@ class _PokedexPageState extends State<PokedexPage> {
       body: Container(
         margin: EdgeInsets.all(20.0),
         child: FutureBuilder(
-          future: PokedexService.getPokedex(name: widget.pokedexId.toString()),
+          future: PokedexService.getPokedex(widget.pokedexId),
           builder: (_builder, _snapshot) {
             if (_snapshot.hasData) {
               Pokedex pokedex = _snapshot.data;
@@ -47,7 +47,7 @@ class _PokedexPageState extends State<PokedexPage> {
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext __context, int index) {
                         return FutureBuilder(
-                          future: PokedexService.getPokemon(name: pokedex.pokemon[index].data.name),
+                          future: PokedexService.getPokemon(name: pokedex.pokemon[index].name),
                           builder: (BuildContext ___context, ___snapshot) {
                             if (___snapshot.hasData) {
                               return PokemonItemWidget(pokemon: ___snapshot.data);

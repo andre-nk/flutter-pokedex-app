@@ -8,16 +8,13 @@ part of 'pokedex_pokemon.dart';
 
 PokedexPokemon _$PokedexPokemonFromJson(Map<String, dynamic> json) {
   return PokedexPokemon(
-    id: json['entry_number'] as int,
-    data: json['pokemon_species'] == null
-        ? null
-        : PokedexPokemonData.fromJson(
-            json['pokemon_species'] as Map<String, dynamic>),
+    name: json['name'] as String,
+    url: json['url'] as String,
   );
 }
 
 Map<String, dynamic> _$PokedexPokemonToJson(PokedexPokemon instance) =>
     <String, dynamic>{
-      'entry_number': instance.id,
-      'pokemon_species': instance.data?.toJson(),
+      'name': instance.name,
+      'url': instance.url,
     };

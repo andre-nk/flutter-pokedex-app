@@ -8,8 +8,7 @@ part of 'pokedex.dart';
 
 Pokedex _$PokedexFromJson(Map<String, dynamic> json) {
   return Pokedex(
-    name: json['name'] as String,
-    pokemon: (json['pokemon_entries'] as List)
+    pokemon: (json['pokemon'] as List)
         ?.map((e) => e == null
             ? null
             : PokedexPokemon.fromJson(e as Map<String, dynamic>))
@@ -18,6 +17,5 @@ Pokedex _$PokedexFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$PokedexToJson(Pokedex instance) => <String, dynamic>{
-      'name': instance.name,
-      'pokemon_entries': instance.pokemon?.map((e) => e?.toJson())?.toList(),
+      'pokemon': instance.pokemon?.map((e) => e?.toJson())?.toList(),
     };
