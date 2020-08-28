@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/models/pokedex.dart';
 import 'package:pokedex/services/pokedex_service.dart';
 import 'package:pokedex/widget/pokemon_item.dart';
+import 'package:pokedex/widget/sidemenu.dart';
 
 class PokedexPage extends StatefulWidget {
   @override
@@ -25,6 +26,7 @@ class _PokedexPageState extends State<PokedexPage> {
           ),
         ),
       ),
+      drawer: SideMenu(),
       backgroundColor: Colors.grey[850],
       body: Container(
         margin: EdgeInsets.all(20.0),
