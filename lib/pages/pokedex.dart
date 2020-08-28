@@ -17,6 +17,7 @@ class _PokedexPageState extends State<PokedexPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red[300],
         title: Text(
           'Pokedex',
           style: TextStyle(
@@ -65,7 +66,9 @@ class _PokedexPageState extends State<PokedexPage> {
 
                             return Padding(
                               padding: EdgeInsets.symmetric(vertical: 32.0),
-                              child: Center(child: CircularProgressIndicator()),
+                              child: Center(child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(Colors.red[300]),
+                              )),
                             );
                           },
                         );
@@ -92,7 +95,9 @@ class _PokedexPageState extends State<PokedexPage> {
 
             return Padding(
               padding: EdgeInsets.symmetric(vertical: 32.0),
-              child: Center(child: CircularProgressIndicator()),
+              child: Center(child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.red[300]),
+              )),
             );
           }
         ),
