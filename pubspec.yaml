@@ -71,6 +71,10 @@ flutter:
       fonts:
         - asset: assets/fonts/Nunito-Regular.ttf
         - asset: assets/fonts/Nunito-Bold.ttf
+
+    - family:  PokeballIcon
+      fonts:
+        - asset: assets/fonts/PokeballIcon.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/pages/pokedex.dart';
+import 'package:pokedex/widget/pokeball_icon_icons.dart';
 
 class SideMenu extends StatefulWidget {
   @override
@@ -7,6 +8,8 @@ class SideMenu extends StatefulWidget {
 }
 
 class _SideMenuState extends State<SideMenu> {
+  ImageProvider logo = AssetImage('assets/img/pokedex.png');
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -14,14 +17,21 @@ class _SideMenuState extends State<SideMenu> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
-            child: Image.asset('assets/img/pokedex.png'),
+            child: Container(
+              decoration: BoxDecoration(
+              image: DecorationImage(
+                image: logo,
+                alignment: Alignment.center
+              )
+            ),
+            ),
             decoration: BoxDecoration(
-              color: Colors.red[300]
+              color: Colors.red[300],
             ),
           ),
 
           ListTile(
-            leading: Icon(Icons.games),
+            leading: Icon(PokeballIcon.pokeball_icon),
             title: Text('Kanto'),
             onTap: () {
               Navigator.push(
@@ -32,7 +42,7 @@ class _SideMenuState extends State<SideMenu> {
           ),
 
           ListTile(
-            leading: Icon(Icons.games),
+            leading: Icon(PokeballIcon.pokeball_icon),
             title: Text('Johto'),
             onTap: () {
               Navigator.push(
@@ -43,7 +53,7 @@ class _SideMenuState extends State<SideMenu> {
           ),
 
           ListTile(
-            leading: Icon(Icons.games),
+            leading: Icon(PokeballIcon.pokeball_icon),
             title: Text('Hoenn'),
             onTap: () {
               Navigator.push(
@@ -54,7 +64,7 @@ class _SideMenuState extends State<SideMenu> {
           ),
 
           ListTile(
-            leading: Icon(Icons.games),
+            leading: Icon(PokeballIcon.pokeball_icon),
             title: Text('Sinnoh'),
             onTap: () {
               Navigator.push(
@@ -65,7 +75,7 @@ class _SideMenuState extends State<SideMenu> {
           ),
 
           ListTile(
-            leading: Icon(Icons.games),
+            leading: Icon(PokeballIcon.pokeball_icon),
             title: Text('Unova'),
             onTap: () {
               Navigator.push(
@@ -76,7 +86,7 @@ class _SideMenuState extends State<SideMenu> {
           ),
 
           ListTile(
-            leading: Icon(Icons.games),
+            leading: Icon(PokeballIcon.pokeball_icon),
             title: Text('Kalos'),
             onTap: () {
               Navigator.push(
@@ -84,29 +94,7 @@ class _SideMenuState extends State<SideMenu> {
                 MaterialPageRoute(builder: (context) => PokedexPage(pokedexId: 6)),
               );
             },
-          ),
-
-          ListTile(
-            leading: Icon(Icons.games),
-            title: Text('Alola'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PokedexPage(pokedexId: 7)),
-              );
-            },
-          ),
-
-          ListTile(
-            leading: Icon(Icons.games),
-            title: Text('Galar'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PokedexPage(pokedexId: 8)),
-              );
-            },
-          ),
+          )
         ],
       ),
     );
