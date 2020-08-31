@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:pokedex/config/env.dart';
+import 'package:pokedex/utils/string_extension.dart';
 import 'package:pokedex/models/pokedex.dart';
 import 'package:pokedex/models/pokemon.dart';
 
@@ -22,7 +22,7 @@ class PokedexService {
       }
     } catch (e) {
       Fluttertoast.showToast(
-        msg: e.toString(),
+        msg: 'Error getting Pokemon from this Pokedex, try again later!',
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
@@ -44,8 +44,7 @@ class PokedexService {
     try {
       final String url = 'https://us-central1-image-dominant-color.cloudfunctions.net/getPokemonFromPokedexApi';
       final response = await http.post(url, body: {
-        'pokemon': name,
-	      'token': Env.dominantImageAccessToken
+        'pokemon': name
       });
 
       if (response.statusCode == 200) {
@@ -55,7 +54,16 @@ class PokedexService {
       }
     } catch (e) {
       if (e is Error) {
-        print(e.stackTrace);
+        Fluttertoast.showToast(
+          msg: "Error on getting info about ${name.capitalize()}.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+        );
+
         return Error;
       }
 

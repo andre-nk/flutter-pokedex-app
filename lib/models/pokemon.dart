@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:pokedex/models/sprites.dart';
 import 'package:pokedex/models/stat.dart';
 
 part 'pokemon.g.dart';
@@ -12,7 +11,6 @@ class Pokemon {
     this.name,
     this.abilities,
     this.baseExperience,
-    this.sprites,
     this.stats,
     this.types,
     this.rgb,
@@ -29,8 +27,6 @@ class Pokemon {
 
   @JsonKey(name: 'base_experience')
   final int baseExperience;
-
-  final Sprites sprites;
 
   final List<Stat> stats;
 

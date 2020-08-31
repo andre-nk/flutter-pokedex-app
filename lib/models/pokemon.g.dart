@@ -12,9 +12,6 @@ Pokemon _$PokemonFromJson(Map<String, dynamic> json) {
     name: json['name'] as String,
     abilities: json['abilities'] as List,
     baseExperience: json['base_experience'] as int,
-    sprites: json['sprites'] == null
-        ? null
-        : Sprites.fromJson(json['sprites'] as Map<String, dynamic>),
     stats: (json['stats'] as List)
         ?.map(
             (e) => e == null ? null : Stat.fromJson(e as Map<String, dynamic>))
@@ -32,7 +29,6 @@ Map<String, dynamic> _$PokemonToJson(Pokemon instance) => <String, dynamic>{
       'name': instance.name,
       'abilities': instance.abilities,
       'base_experience': instance.baseExperience,
-      'sprites': instance.sprites?.toJson(),
       'stats': instance.stats?.map((e) => e?.toJson())?.toList(),
       'types': instance.types,
       'rgb': instance.rgb,
