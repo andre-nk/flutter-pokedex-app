@@ -38,6 +38,12 @@ dev_dependencies:
     sdk: flutter
   build_runner: ^1.9.0
   json_serializable: ^3.3.0
+  flutter_launcher_icons: "^0.7.3"
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/img/icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -54,6 +60,7 @@ flutter:
   assets:
     - .env
     - assets/img/pokedex.png
+    - assets/img/icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
