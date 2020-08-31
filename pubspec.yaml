@@ -57,7 +57,6 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - .env
     - assets/img/pokedex.png
     - assets/img/icon.png
 
