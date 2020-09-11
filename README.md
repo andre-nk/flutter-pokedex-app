@@ -1,16 +1,21 @@
-# pokedex
+<h1 align="center">Flutter Pokedex</h1>
 
-A new Flutter project.
+<p align="center">
+This is a small application built with Flutter and integrated with PokeAPI to get information about several Pokemon right and easily on your phone.
+</p>
+</br>
 
-## Getting Started
+<p align="center">
+<img src="previews/screenshots.png" width="55%"/>
+</p>
 
-This project is a starting point for a Flutter application.
+# Download
 
-A few resources to get you started if this is your first Flutter project:
+Go to the [Releases](https://github.com/saulo-arantes/flutter-pokedex-app/releases) to download the lastest APK.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+# Open API
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://user-images.githubusercontent.com/24237865/83422649-d1b1d980-a464-11ea-8c91-a24fdf89cd6b.png" align="right" width="21%"/>
+
+Pokedex using the [PokeAPI](https://pokeapi.co/) for constructing RESTful API.<br>
+PokeAPI provides a RESTful API interface to highly detailed objects built from thousands of lines of data related to Pokémon.
