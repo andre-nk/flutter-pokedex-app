@@ -1,7 +1,7 @@
 <h1 align="center">Flutter Pokedex</h1>
 
 <p align="center">
-This is a small application built with Flutter and integrated with PokeAPI to get information about several Pokemon right and easily on your phone.
+This is a small application built with Flutter and integrated with Firebase Cloud Functions and PokeAPI to get information about several Pokemon easily on your phone.
 </p>
 </br>
 
