@@ -6,18 +6,18 @@ part 'pokemon.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Pokemon {
-  const Pokemon({
-    this.id,
-    this.name,
-    this.abilities,
-    this.baseExperience,
-    this.stats,
-    this.types,
-    this.rgb,
-    this.artwork,
-    this.moves,
-    this.pokedexFlavorEntry
-  });
+  const Pokemon(
+      {this.id,
+      this.name,
+      this.abilities,
+      this.baseExperience,
+      this.stats,
+      this.types,
+      this.rgb,
+      this.artwork,
+      this.moves,
+      this.pokedexFlavorEntry,
+      this.evolutionChainId});
 
   final int id;
 
@@ -41,6 +41,9 @@ class Pokemon {
   @JsonKey(name: 'pokedex_flavor_entry')
   final String pokedexFlavorEntry;
 
+  @JsonKey(name: 'evolution_chain_id')
+  final int evolutionChainId;
+
   static Map colorsTemplate = {
     'bug': Color.fromARGB(255, 198, 209, 110),
     'dark': Color.fromARGB(255, 162, 146, 136),
@@ -62,7 +65,8 @@ class Pokemon {
     'water': Color.fromARGB(255, 157, 183, 245),
   };
 
-  factory Pokemon.fromJson(Map<String, dynamic> json) => _$PokemonFromJson(json);
+  factory Pokemon.fromJson(Map<String, dynamic> json) =>
+      _$PokemonFromJson(json);
 
   Map<String, dynamic> toJson() => _$PokemonToJson(this);
 }
