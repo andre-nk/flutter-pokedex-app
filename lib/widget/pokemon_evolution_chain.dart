@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/models/pokemon.dart';
 import 'package:pokedex/pages/pokemon.dart';
 import 'package:pokedex/services/pokedex_service.dart';
+import 'package:skeleton_text/skeleton_text.dart';
 
 class EvolutionChainWidget extends StatefulWidget {
   final Pokemon pokemon;
@@ -38,7 +39,28 @@ class _EvolutionChainWidgetState extends State<EvolutionChainWidget> {
           );
         }
 
-        return Container();
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: Container(
+              width: 100,
+              child: LinearProgressIndicator(
+                backgroundColor: Colors.grey[850],
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  widget.pokemon.rgb.length > 0
+                      ? Color.fromARGB(
+                          255,
+                          widget.pokemon.rgb[0],
+                          widget.pokemon.rgb[1],
+                          widget.pokemon.rgb[2],
+                        )
+                      : Colors.white,
+                ),
+              ),
+            ),
+          );
+        }
+
+        return Icon(Icons.error);
       },
     );
   }
@@ -66,8 +88,8 @@ class _EvolutionChainWidgetState extends State<EvolutionChainWidget> {
                     }
                   },
                   child: Container(
-                    width: 100,
-                    height: 100,
+                    width: 150,
+                    height: 150,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(pokemon.artwork),
