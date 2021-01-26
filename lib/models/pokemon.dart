@@ -6,18 +6,19 @@ part 'pokemon.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Pokemon {
-  const Pokemon(
-      {this.id,
-      this.name,
-      this.abilities,
-      this.baseExperience,
-      this.stats,
-      this.types,
-      this.rgb,
-      this.artwork,
-      this.moves,
-      this.pokedexFlavorEntry,
-      this.evolutionChainId});
+  const Pokemon({
+    this.id,
+    this.name,
+    this.abilities,
+    this.baseExperience,
+    this.stats,
+    this.types,
+    this.rgb,
+    this.artwork,
+    this.moves,
+    this.pokedexFlavorEntry,
+    this.evolutionChainId,
+  });
 
   final int id;
 

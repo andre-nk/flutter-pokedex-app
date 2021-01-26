@@ -71,8 +71,9 @@ class PokedexService {
     try {
       final String url =
           'https://us-central1-image-dominant-color.cloudfunctions.net/getPokemonEvolutionaryChain';
-      final response = await http.post(url, body: {'chainId': chainId});
-      final List<List> responseBody = json.decode(response.body);
+      final response =
+          await http.post(url, body: {'chainId': chainId.toString()});
+      final List responseBody = List.from(jsonDecode(response.body));
       final List<List<Pokemon>> pokemonEvolutions = [];
 
       int i = 0;
@@ -80,23 +81,29 @@ class PokedexService {
 
       responseBody.forEach((chain) {
         pokemonEvolutions.add([]);
+        // responseBody[i] = List.from(responseBody[i]);
+        j = 0;
         chain.forEach((pokemon) {
-          pokemonEvolutions[i]
-              .add(Pokemon.fromJson(json.decode(responseBody[i][j])));
+          pokemonEvolutions[i].add(Pokemon.fromJson(responseBody[i][j]));
+          j++;
         });
+
+        i++;
       });
 
       return pokemonEvolutions;
     } catch (e) {
       if (e is Error) {
+        print(e.stackTrace);
         Fluttertoast.showToast(
-            msg: "Error on getting info about evolutions.",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
+          msg: "Error on getting info about evolutions.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
 
         return null;
       }

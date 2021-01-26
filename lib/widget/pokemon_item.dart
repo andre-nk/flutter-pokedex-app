@@ -26,13 +26,22 @@ class _PokemonItemWidgetState extends State<PokemonItemWidget> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PokemonPage(pokemon: widget.pokemon)),
+          MaterialPageRoute(
+            builder: (context) => PokemonPage(pokemon: widget.pokemon),
+          ),
         );
       },
       child: Container(
         decoration: BoxDecoration(
-          color: widget.pokemon.rgb.length > 0 ? Color.fromARGB(255, widget.pokemon.rgb[0], widget.pokemon.rgb[1], widget.pokemon.rgb[2]) : Colors.white,
-          borderRadius: BorderRadius.circular(15.0)
+          color: widget.pokemon.rgb.length > 0
+              ? Color.fromARGB(
+                  255,
+                  widget.pokemon.rgb[0],
+                  widget.pokemon.rgb[1],
+                  widget.pokemon.rgb[2],
+                )
+              : Colors.white,
+          borderRadius: BorderRadius.circular(15.0),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -51,11 +60,11 @@ class _PokemonItemWidgetState extends State<PokemonItemWidget> {
               widget.pokemon.name.capitalize(),
               style: TextStyle(
                 fontSize: 18.0,
-                color: Colors.white
+                color: Colors.white,
               ),
-            )
+            ),
           ],
-        )
+        ),
       ),
     );
   }

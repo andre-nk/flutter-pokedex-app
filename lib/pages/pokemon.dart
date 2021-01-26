@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/models/pokemon.dart';
 import 'package:pokedex/utils/string_extension.dart';
+import 'package:pokedex/widget/pokemon_evolution_chain.dart';
 import 'package:pokedex/widget/pokemon_stats.dart';
 import 'package:pokedex/widget/pokemon_types.dart';
 
@@ -14,7 +15,6 @@ class PokemonPage extends StatefulWidget {
 }
 
 class _PokemonPageState extends State<PokemonPage> {
-
   @override
   Widget build(BuildContext context) {
     double statusBarHeight = MediaQuery.of(context).padding.top;
@@ -30,13 +30,11 @@ class _PokemonPageState extends State<PokemonPage> {
                 child: Align(
                   child: Text(
                     '#' + widget.pokemon.id.toString(),
-                    style: TextStyle(
-                      fontSize: 18.0
-                    ),
+                    style: TextStyle(fontSize: 18.0),
                   ),
                   alignment: Alignment.center,
                 ),
-              )
+              ),
             ],
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
@@ -46,87 +44,75 @@ class _PokemonPageState extends State<PokemonPage> {
                     widget.pokemon.artwork,
                     fit: BoxFit.fitHeight,
                   ),
-                  tag: 'pokemon_image_' + widget.pokemon.name
+                  tag: 'pokemon_image_' + widget.pokemon.name,
                 ),
-              )
+              ),
             ),
             shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(100),
-                bottomRight: Radius.circular(100)
-              )
+                bottomRight: Radius.circular(100),
+              ),
             ),
             expandedHeight: 200.0 + statusBarHeight,
             backgroundColor: widget.pokemon.rgb.length > 0
-              ? Color.fromARGB(255, widget.pokemon.rgb[0], widget.pokemon.rgb[1], widget.pokemon.rgb[2])
-              : Colors.white,
+                ? Color.fromARGB(255, widget.pokemon.rgb[0],
+                    widget.pokemon.rgb[1], widget.pokemon.rgb[2])
+                : Colors.white,
           ),
-
           SliverToBoxAdapter(
             child: Container(
-              padding: EdgeInsets.only(
-                bottom: 5.0,
-                top: 15.0
-              ),
+              padding: EdgeInsets.only(bottom: 5.0, top: 15.0),
               child: Center(
                 child: Text(
                   widget.pokemon.name.capitalize(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 26,
-                    color: Colors.white
-                  ),
+                  style: TextStyle(fontSize: 26, color: Colors.white),
                 ),
               ),
-            )
+            ),
           ),
-
           SliverToBoxAdapter(
             child: Container(
-               padding: EdgeInsets.symmetric(
-                horizontal: 40.0,
-                vertical: 5.0
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 5.0),
               child: Center(
                 child: Text(
                   '\"' + widget.pokemon.pokedexFlavorEntry + '\"',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white
-                  ),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
-            )
+            ),
           ),
-
           SliverToBoxAdapter(
-            child: PokemonTypesWidget(types: widget.pokemon.types)
+            child: PokemonTypesWidget(types: widget.pokemon.types),
           ),
-
-
           SliverToBoxAdapter(
             child: PokemonStatsWidget(
               stats: widget.pokemon.stats,
-              color: Color.fromARGB(255, widget.pokemon.rgb[0], widget.pokemon.rgb[1], widget.pokemon.rgb[2])
-            )
+              color: Color.fromARGB(255, widget.pokemon.rgb[0],
+                  widget.pokemon.rgb[1], widget.pokemon.rgb[2]),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: EdgeInsets.only(bottom: 5.0, top: 15.0),
+              child: Center(
+                child: Text(
+                  'Evolutions',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 26, color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: EvolutionChainWidget(
+              pokemon: widget.pokemon,
+            ),
           ),
         ],
       ),
     );
-  }
-
-  _buildDataTableMoves() {
-    List<DataRow> movesList = [];
-
-    for (var i = 0; i < widget.pokemon.moves.length; i++) {
-      movesList.add(DataRow(cells: [
-        DataCell(Text('-')),
-        DataCell(Text(widget.pokemon.moves[i]['move']['name'])),
-        DataCell(Text('')),
-      ]));
-    }
-
-    return movesList;
   }
 }
