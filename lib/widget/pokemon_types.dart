@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/models/pokemon.dart';
 
 class PokemonTypesWidget extends StatelessWidget {
-  PokemonTypesWidget({
-    this.types
-  });
+  PokemonTypesWidget({this.types});
 
   final List types;
 
   @override
   Widget build(BuildContext context) {
+    print('tipos:  $types');
     return Container(
       height: 100.0,
       child: Row(
@@ -29,19 +28,23 @@ class PokemonTypesWidget extends StatelessWidget {
           width: 150.0,
           height: 40.0,
           decoration: BoxDecoration(
-            color: Pokemon.colorsTemplate[types[i]],
-            borderRadius: BorderRadius.circular(30.0)
+            color: Pokemon.colorsTemplate[types[i].runtimeType == String
+                ? types[i]
+                : types[i]['type']['name']],
+            borderRadius: BorderRadius.circular(30.0),
           ),
           child: Center(
             child: Text(
-              types[i],
+              types[i].runtimeType == String
+                  ? types[i]
+                  : types[i]['type']['name'],
               style: TextStyle(
                 fontSize: 18.0,
-                color: Colors.white
+                color: Colors.white,
               ),
             ),
-          )
-        )
+          ),
+        ),
       );
     }
 

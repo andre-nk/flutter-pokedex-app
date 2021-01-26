@@ -120,7 +120,7 @@ class _EvolutionChainWidgetState extends State<EvolutionChainWidget> {
               angle: pi / 2,
               child: Icon(
                 Icons.arrow_forward_ios_rounded,
-                color: Colors.grey.shade400,
+                color: Colors.grey.shade200,
                 size: 30,
               ),
             ),
