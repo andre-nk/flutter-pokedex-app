@@ -72,35 +72,43 @@ class _EvolutionChainWidgetState extends State<EvolutionChainWidget> {
 
     chain.forEach((evolutionStage) {
       chainList.add(
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: evolutionStage
-              .map(
-                (Pokemon pokemon) => GestureDetector(
-                  onTap: () {
-                    if (widget.pokemon.name != pokemon.name) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PokemonPage(pokemon: pokemon),
+        Container(
+          height: 150,
+          width: double.infinity,
+          child: Center(
+            child: ListView(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              children: evolutionStage
+                  .map(
+                    (Pokemon pokemon) => GestureDetector(
+                      onTap: () {
+                        if (widget.pokemon.name != pokemon.name) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  PokemonPage(pokemon: pokemon),
+                            ),
+                          );
+                        }
+                      },
+                      child: Container(
+                        width: 150,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(pokemon.artwork),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      );
-                    }
-                  },
-                  child: Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(pokemon.artwork),
-                        fit: BoxFit.cover,
+                        // child: Image.network(pokemon.artwork),
                       ),
                     ),
-                    // child: Image.network(pokemon.artwork),
-                  ),
-                ),
-              )
-              .toList(),
+                  )
+                  .toList(),
+            ),
+          ),
         ),
       );
 
