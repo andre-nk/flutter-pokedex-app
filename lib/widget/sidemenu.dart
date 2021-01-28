@@ -19,79 +19,101 @@ class _SideMenuState extends State<SideMenu> {
           DrawerHeader(
             child: Container(
               decoration: BoxDecoration(
-              image: DecorationImage(
-                image: logo,
-                alignment: Alignment.center
-              )
-            ),
+                image: DecorationImage(
+                  image: logo,
+                  alignment: Alignment.center,
+                ),
+              ),
             ),
             decoration: BoxDecoration(
               color: Colors.red[300],
             ),
           ),
-
           ListTile(
             leading: Icon(PokeballIcon.pokeball_icon),
             title: Text('Kanto'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PokedexPage(pokedexId: 1)),
+                MaterialPageRoute(
+                    builder: (context) => PokedexPage(pokedexId: 1)),
               );
             },
           ),
-
           ListTile(
             leading: Icon(PokeballIcon.pokeball_icon),
             title: Text('Johto'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PokedexPage(pokedexId: 2)),
+                MaterialPageRoute(
+                    builder: (context) => PokedexPage(pokedexId: 2)),
               );
             },
           ),
-
           ListTile(
             leading: Icon(PokeballIcon.pokeball_icon),
             title: Text('Hoenn'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PokedexPage(pokedexId: 3)),
+                MaterialPageRoute(
+                    builder: (context) => PokedexPage(pokedexId: 3)),
               );
             },
           ),
-
           ListTile(
             leading: Icon(PokeballIcon.pokeball_icon),
             title: Text('Sinnoh'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PokedexPage(pokedexId: 4)),
+                MaterialPageRoute(
+                    builder: (context) => PokedexPage(pokedexId: 4)),
               );
             },
           ),
-
           ListTile(
             leading: Icon(PokeballIcon.pokeball_icon),
             title: Text('Unova'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PokedexPage(pokedexId: 5)),
+                MaterialPageRoute(
+                    builder: (context) => PokedexPage(pokedexId: 5)),
               );
             },
           ),
-
           ListTile(
             leading: Icon(PokeballIcon.pokeball_icon),
             title: Text('Kalos'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PokedexPage(pokedexId: 6)),
+                MaterialPageRoute(
+                    builder: (context) => PokedexPage(pokedexId: 6)),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(PokeballIcon.pokeball_icon),
+            title: Text('Alola'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PokedexPage(pokedexId: 7)),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(PokeballIcon.pokeball_icon),
+            title: Text('Galar'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PokedexPage(pokedexId: 8)),
               );
             },
           )
