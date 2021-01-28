@@ -6,9 +6,20 @@ import 'package:http/http.dart' as http;
 import 'package:pokedex/utils/string_extension.dart';
 import 'package:pokedex/models/pokedex.dart';
 import 'package:pokedex/models/pokemon.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PokedexService {
   static getPokedex(id) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    if (prefs.containsKey('pokedex_$id')) {
+      String pokedexJson = prefs.getString('pokedex_$id');
+
+      final Pokedex pokedex = Pokedex.fromJson(json.decode(pokedexJson));
+
+      return pokedex;
+    }
+
     try {
       final String url =
           'https://us-central1-image-dominant-color.cloudfunctions.net/getPokedexByGenerationFromPokedexApi';
@@ -16,6 +27,8 @@ class PokedexService {
 
       if (response.statusCode == 200) {
         final Pokedex pokedex = Pokedex.fromJson(json.decode(response.body));
+
+        prefs.setString('pokedex_$id', json.encode(pokedex.toJson()));
 
         return pokedex;
       }
@@ -39,6 +52,16 @@ class PokedexService {
   }
 
   static getPokemon({String name}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    if (prefs.containsKey('pokemon_$name')) {
+      String pokemonJson = prefs.getString('pokemon_$name');
+
+      final Pokemon pokemon = Pokemon.fromJson(json.decode(pokemonJson));
+
+      return pokemon;
+    }
+
     try {
       final String url =
           'https://us-central1-image-dominant-color.cloudfunctions.net/getPokemonFromPokedexApi';
@@ -46,6 +69,8 @@ class PokedexService {
 
       if (response.statusCode == 200) {
         final Pokemon pokemon = Pokemon.fromJson(json.decode(response.body));
+
+        prefs.setString('pokemon_$name', json.encode(pokemon.toJson()));
 
         return pokemon;
       }
@@ -68,6 +93,33 @@ class PokedexService {
   }
 
   static Future<List<List<Pokemon>>> getEvolutionChain({int chainId}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // prefs.remove('chain_$chainId');
+
+    if (prefs.containsKey('chain_$chainId')) {
+      String chainJson = prefs.getString('chain_$chainId');
+
+      final List chainObj = json.decode(chainJson);
+      final List<List<Pokemon>> pokemonEvolutions = [];
+
+      int i = 0;
+      int j = 0;
+
+      chainObj.forEach((chain) {
+        pokemonEvolutions.add([]);
+        j = 0;
+        chain.forEach((pokemon) {
+          pokemonEvolutions[i].add(Pokemon.fromJson(chainObj[i][j]));
+          j++;
+        });
+
+        i++;
+      });
+
+      return pokemonEvolutions;
+    }
+
     try {
       final String url =
           'https://us-central1-image-dominant-color.cloudfunctions.net/getPokemonEvolutionaryChain';
@@ -81,7 +133,6 @@ class PokedexService {
 
       responseBody.forEach((chain) {
         pokemonEvolutions.add([]);
-        // responseBody[i] = List.from(responseBody[i]);
         j = 0;
         chain.forEach((pokemon) {
           pokemonEvolutions[i].add(Pokemon.fromJson(responseBody[i][j]));
@@ -90,6 +141,8 @@ class PokedexService {
 
         i++;
       });
+
+      prefs.setString('chain_$chainId', json.encode(pokemonEvolutions));
 
       return pokemonEvolutions;
     } catch (e) {
