@@ -54,16 +54,19 @@ class _PokemonAlternativeFormsWidgetState
                               PokemonPage(pokemon: variations[index]),
                         ),
                       ),
-                      child: Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(variations[index].artwork),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
+                      child: variations[index].artwork != null
+                          ? Container(
+                              width: 150,
+                              height: 150,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image:
+                                      NetworkImage(variations[index].artwork),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            )
+                          : Container(),
                     );
                   },
                 ),

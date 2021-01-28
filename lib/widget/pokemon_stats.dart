@@ -4,7 +4,7 @@ import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.da
 class PokemonStatsWidget extends StatelessWidget {
   PokemonStatsWidget({
     this.stats,
-    this.color
+    this.color,
   });
 
   final List stats;
@@ -23,6 +23,7 @@ class PokemonStatsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: 15),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -35,12 +36,8 @@ class PokemonStatsWidget extends StatelessWidget {
     List<Widget> statsList = [];
 
     for (var i = 0; i < stats.length; i++) {
-      statsList.add(
-        Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 40.0,
-            vertical: 5.0
-          ),
+      statsList.add(Container(
+          padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 5.0),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -48,25 +45,20 @@ class PokemonStatsWidget extends StatelessWidget {
               Expanded(
                 child: Text(
                   statsName[stats[i].stat['name']],
-                  style: TextStyle(
-                    color: Colors.white
-                  ),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
               Expanded(
-                child: FAProgressBar(
-                  currentValue: stats[i].baseStat,
-                  displayText: '',
-                  maxValue: 255,
-                  backgroundColor: Colors.grey[700],
-                  animatedDuration: Duration(seconds: 1),
-                  progressColor: color,
-                )
-              ),
+                  child: FAProgressBar(
+                currentValue: stats[i].baseStat,
+                displayText: '',
+                maxValue: 255,
+                backgroundColor: Colors.grey[700],
+                animatedDuration: Duration(seconds: 1),
+                progressColor: color,
+              )),
             ],
-          )
-        )
-      );
+          )));
     }
 
     return statsList;
