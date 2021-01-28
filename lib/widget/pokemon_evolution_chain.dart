@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/models/pokemon.dart';
 import 'package:pokedex/pages/pokemon.dart';
 import 'package:pokedex/services/pokedex_service.dart';
-import 'package:skeleton_text/skeleton_text.dart';
 
 class EvolutionChainWidget extends StatefulWidget {
   final Pokemon pokemon;
@@ -42,6 +41,7 @@ class _EvolutionChainWidgetState extends State<EvolutionChainWidget> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
             child: Container(
+              margin: EdgeInsets.only(bottom: 20),
               width: 100,
               child: LinearProgressIndicator(
                 backgroundColor: Colors.grey[850],

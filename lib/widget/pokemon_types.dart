@@ -8,7 +8,6 @@ class PokemonTypesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('tipos:  $types');
     return Container(
       height: 100.0,
       child: Row(

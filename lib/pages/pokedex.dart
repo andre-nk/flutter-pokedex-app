@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/models/pokedex.dart';
-import 'package:pokedex/models/pokemon.dart';
 import 'package:pokedex/services/pokedex_service.dart';
 import 'package:pokedex/widget/pokemon_item.dart';
+import 'package:pokedex/widget/search_appbar.dart';
 import 'package:pokedex/widget/sidemenu.dart';
 
 class PokedexPage extends StatefulWidget {
@@ -18,12 +18,9 @@ class _PokedexPageState extends State<PokedexPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red[300],
-        title: Text(
-          'Pokedex',
-          style: TextStyle(fontWeight: FontWeight.w700),
-        ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(56),
+        child: SearchAppBar(),
       ),
       drawer: SideMenu(),
       backgroundColor: Colors.grey[850],
