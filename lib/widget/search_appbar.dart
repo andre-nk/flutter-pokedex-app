@@ -63,6 +63,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
         ),
         onPressed: () {
           setState(() {
+            search.text = '';
             isSearching = false;
           });
         },
@@ -104,14 +105,18 @@ class _SearchAppBarState extends State<SearchAppBar> {
       ),
       itemBuilder: (BuildContext context, String suggestion) {
         return Container(
+          decoration: BoxDecoration(
+            color: Colors.red[200],
+            border: Border.all(
+              color: Colors.red[200],
+            ),
+          ),
           height: 70,
           width: 300,
           child: Center(
             child: Text(
               suggestion,
-              style: TextStyle(
-                fontSize: 18,
-              ),
+              style: TextStyle(fontSize: 18, color: Colors.white),
             ),
           ),
         );
