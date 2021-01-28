@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/models/pokemon.dart';
 import 'package:pokedex/utils/string_extension.dart';
+import 'package:pokedex/widget/pokemon_alternative_forms.dart';
 import 'package:pokedex/widget/pokemon_evolution_chain.dart';
 import 'package:pokedex/widget/pokemon_stats.dart';
 import 'package:pokedex/widget/pokemon_types.dart';
@@ -19,6 +20,8 @@ class _PokemonPageState extends State<PokemonPage> {
   Widget build(BuildContext context) {
     double statusBarHeight = MediaQuery.of(context).padding.top;
 
+    print('isVariation -> ${widget.pokemon.varieties}');
+
     return Scaffold(
       backgroundColor: Colors.grey[850],
       body: CustomScrollView(
@@ -29,7 +32,9 @@ class _PokemonPageState extends State<PokemonPage> {
                 padding: EdgeInsets.symmetric(horizontal: 10.0),
                 child: Align(
                   child: Text(
-                    '#' + widget.pokemon.id.toString(),
+                    !widget.pokemon.isVariation
+                        ? '#' + widget.pokemon.id.toString()
+                        : ' ',
                     style: TextStyle(fontSize: 18.0),
                   ),
                   alignment: Alignment.center,
@@ -94,23 +99,48 @@ class _PokemonPageState extends State<PokemonPage> {
                   widget.pokemon.rgb[1], widget.pokemon.rgb[2]),
             ),
           ),
-          SliverToBoxAdapter(
-            child: Container(
-              padding: EdgeInsets.only(bottom: 5.0, top: 15.0),
-              child: Center(
-                child: Text(
-                  'Evolutions',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 26, color: Colors.white),
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: EvolutionChainWidget(
-              pokemon: widget.pokemon,
-            ),
-          ),
+          !widget.pokemon.isVariation
+              ? SliverToBoxAdapter(
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: 5.0, top: 15.0),
+                    child: Center(
+                      child: Text(
+                        'Evolutions',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 26, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                )
+              : SliverToBoxAdapter(child: Container()),
+          !widget.pokemon.isVariation
+              ? SliverToBoxAdapter(
+                  child: EvolutionChainWidget(
+                    pokemon: widget.pokemon,
+                  ),
+                )
+              : SliverToBoxAdapter(child: Container()),
+          !widget.pokemon.isVariation && widget.pokemon.varieties.length > 0
+              ? SliverToBoxAdapter(
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: 5.0, top: 15.0),
+                    child: Center(
+                      child: Text(
+                        'Alternative Forms',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 26, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                )
+              : SliverToBoxAdapter(child: Container()),
+          !widget.pokemon.isVariation && widget.pokemon.varieties.length > 0
+              ? SliverToBoxAdapter(
+                  child: PokemonAlternativeFormsWidget(
+                    pokemon: widget.pokemon,
+                  ),
+                )
+              : SliverToBoxAdapter(child: Container()),
         ],
       ),
     );

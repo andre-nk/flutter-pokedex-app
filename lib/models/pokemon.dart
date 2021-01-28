@@ -18,6 +18,8 @@ class Pokemon {
     this.moves,
     this.pokedexFlavorEntry,
     this.evolutionChainId,
+    this.isVariation,
+    this.varieties,
   });
 
   final int id;
@@ -44,6 +46,11 @@ class Pokemon {
 
   @JsonKey(name: 'evolution_chain_id')
   final int evolutionChainId;
+
+  @JsonKey(name: 'is_variation')
+  final bool isVariation;
+
+  final List<Map> varieties;
 
   static Map colorsTemplate = {
     'bug': Color.fromARGB(255, 198, 209, 110),

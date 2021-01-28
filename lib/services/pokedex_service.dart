@@ -162,4 +162,54 @@ class PokedexService {
 
     return null;
   }
+
+  static getPokemonVariations({
+    String pokemonVariationName,
+    String pokemonSpeciesName,
+  }) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    if (prefs.containsKey('pokemon_$pokemonVariationName')) {
+      String pokemonJson = prefs.getString('pokemon_$pokemonVariationName');
+
+      final Pokemon pokemon = Pokemon.fromJson(json.decode(pokemonJson));
+
+      return pokemon;
+    }
+
+    try {
+      final String url =
+          'https://us-central1-image-dominant-color.cloudfunctions.net/getPokemonVariations';
+      final response = await http.post(url, body: {
+        'pokemonVariationName': pokemonVariationName,
+        'pokemonSpeciesName': pokemonSpeciesName,
+      });
+
+      final Pokemon pokemon = Pokemon.fromJson(json.decode(response.body));
+
+      prefs.setString(
+        'pokemon_$pokemonVariationName',
+        json.encode(pokemon.toJson()),
+      );
+
+      return pokemon;
+    } catch (e) {
+      if (e is Error) {
+        print(e.stackTrace);
+        Fluttertoast.showToast(
+          msg: "Error on getting info about evolutions.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+
+        return null;
+      }
+    }
+
+    return null;
+  }
 }
