@@ -95,8 +95,6 @@ class PokedexService {
   static Future<List<List<Pokemon>>> getEvolutionChain({int chainId}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    // prefs.remove('chain_$chainId');
-
     if (prefs.containsKey('chain_$chainId')) {
       String chainJson = prefs.getString('chain_$chainId');
 
